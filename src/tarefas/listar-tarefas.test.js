@@ -1,4 +1,4 @@
-import { ReactDOM } from 'react';
+import { ReactDOM } from 'react-dom';
 import ListarTarefas from './listar-tarefas';
 
 describe('teste de componente de listagem de tarefas', () => {

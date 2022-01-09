@@ -1,10 +1,10 @@
 import { ReactDOM } from 'react-dom';
-import CadastrarTarefa from './cadastrar-tarefas';
+import AtualizarTarefa from './atualizar-tarefa';
 
-describe('teste de componente de cadastro de tarefas', () => {
+describe('Teste de componente de atualização de tarefas', () => {
   it('deve renderizar o componente sem erros', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<CadastrarTarefa />, div);
+    ReactDOM.render(<AtualizarTarefa id={1} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });
