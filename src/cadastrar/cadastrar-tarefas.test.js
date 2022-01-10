@@ -1,4 +1,4 @@
-import { ReactDOM } from 'react-dom';
+import ReactDOM from 'react-dom';
 import CadastrarTarefa from './cadastrar-tarefas';
 
 describe('teste de componente de cadastro de tarefas', () => {
