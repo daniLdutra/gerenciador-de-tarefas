@@ -5,10 +5,15 @@ import {
   FormControl,
   Container,
   Button,
+  ModalTitle,
+  Modal,
+  ModalBody,
+  ModalFooter,
 } from 'react-bootstrap';
 import React from 'react';
 // import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 
 function CadastrarTarefa() {
   const history = useHistory();
@@ -40,6 +45,15 @@ function CadastrarTarefa() {
             <Button onClick={() => history.push('/')}>Voltar</Button>
           </FormGroup>
         </Form>
+        <Modal show={true}>
+          <ModalHeader closeButton>
+            <ModalTitle>Sucesso</ModalTitle>
+          </ModalHeader>
+          <ModalBody>Tarefa adicionada com sucesso</ModalBody>
+          <ModalFooter>
+            <Button variant="success">Continuar</Button>
+          </ModalFooter>
+        </Modal>
       </Container>
     </div>
   );
