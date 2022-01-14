@@ -14,6 +14,7 @@ import React, { useState } from 'react';
 // import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import ModalHeader from 'react-bootstrap/esm/ModalHeader';
+import Tarefa from '../models/tarefa.models';
 
 function CadastrarTarefa() {
   const history = useHistory();
@@ -22,7 +23,17 @@ function CadastrarTarefa() {
   const [formValidado, setFormValidado] = useState(false);
   const [exibirModal, setExibirModal] = useState(false);
 
-  function cadastrar(event) {}
+  function cadastrar(event) {
+    event.preventDefault();
+    setFormValidado(true);
+    if (event.currentTarget.checkValidity() === true) {
+      const tarefasDb = localStorage['tarefas'];
+      const tarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
+      tarefas.push(new Tarefa(new Date().getTime(), tarefa, false));
+      localStorage['tarefas'] = JSON.stringify(tarefas);
+      setExibirModal(true);
+    }
+  }
 
   function handleTxtTarefa({ target }) {
     setTarefa(target.value);
