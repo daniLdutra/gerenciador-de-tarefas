@@ -61,7 +61,7 @@ function CadastrarTarefa() {
             <Button onClick={() => history.push('/')}>Voltar</Button>
           </FormGroup>
         </Form>
-        <Modal show={true} onHide={handleFecharModal}>
+        <Modal show={exibirModal} onHide={handleFecharModal}>
           <ModalHeader closeButton>
             <ModalTitle>Sucesso</ModalTitle>
           </ModalHeader>
