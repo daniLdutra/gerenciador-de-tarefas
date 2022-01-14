@@ -1,5 +1,12 @@
+import { Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+
 function ListarTarefas() {
-  return <h1>Listagem de Tarefas</h1>;
+  const history = useHistory();
+
+  return (
+    <Button onClick={() => history.push('/cadastrar')}>Nova Tarefa</Button>
+  );
 }
 
 export default ListarTarefas;
