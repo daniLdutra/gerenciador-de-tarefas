@@ -16,7 +16,7 @@ function ListarTarefas() {
       const tarefasDb = localStorage['tarefas'];
       let listarTarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
       setTarefas(listarTarefas);
-      console.log(listarTarefas);
+      // console.log(listarTarefas);
     }
     if (carregarTarefas) {
       obterTarefas();

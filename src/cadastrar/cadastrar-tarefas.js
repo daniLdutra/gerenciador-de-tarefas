@@ -29,7 +29,7 @@ function CadastrarTarefa() {
     if (event.currentTarget.checkValidity() === true) {
       const tarefasDb = localStorage['tarefas'];
       const tarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
-      tarefas.push(Tarefa(new Date().getTime(), tarefa, false));
+      tarefas.push(Tarefa(new Date().getTime(), tarefa, true));
       localStorage['tarefas'] = JSON.stringify(tarefas);
       setExibirModal(true);
     }
