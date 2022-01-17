@@ -9,11 +9,11 @@ import {
   Modal,
   ModalBody,
   ModalFooter,
+  ModalHeader,
 } from 'react-bootstrap';
 import React, { useState } from 'react';
 // import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 import Tarefa from '../models/tarefa.models';
 
 function CadastrarTarefa() {
@@ -59,13 +59,14 @@ function CadastrarTarefa() {
               required
               value={tarefa}
               onChange={handleTxtTarefa}
+              data-testid="txt-tarefa"
             />
             <Form.Control.Feedback type="invalid">
               A tarefa deve conter ao menos 5 caracteres
             </Form.Control.Feedback>
           </FormGroup>
           <FormGroup className="text-center">
-            <Button type="submit" variant="success">
+            <Button type="submit" variant="success" data-testid="btn-cadastrar">
               Cadastrar
             </Button>
             &nbsp;
