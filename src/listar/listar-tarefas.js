@@ -3,9 +3,25 @@ import { useHistory } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { useState, useEffect } from 'react';
 
 function ListarTarefas() {
   const history = useHistory();
+  const [tarefas, setTarefas] = useState([]);
+  const [carregarTarefas, setCarregarTarefas] = useState(true);
+
+  useEffect(() => {
+    function obterTarefas() {
+      const tarefasDb = localStorage['tarefas'];
+      let listarTarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
+      setTarefas(listarTarefas);
+      console.log(listarTarefas);
+    }
+    if (carregarTarefas) {
+      obterTarefas();
+      setCarregarTarefas(false);
+    }
+  }, [carregarTarefas]);
 
   return (
     <div className="text-center">
