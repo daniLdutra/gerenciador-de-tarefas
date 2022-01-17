@@ -4,6 +4,7 @@ import { Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
+import ItensListaTarefas from './itens-lista-tarefas';
 
 function ListarTarefas() {
   const history = useHistory();
@@ -42,6 +43,12 @@ function ListarTarefas() {
             </th>
           </tr>
         </thead>
+        <tbody>
+          <ItensListaTarefas
+            tarefas={tarefas}
+            recarregarTarefas={setCarregarTarefas}
+          />
+        </tbody>
       </Table>
     </div>
   );
