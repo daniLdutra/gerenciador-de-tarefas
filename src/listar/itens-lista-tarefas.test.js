@@ -8,6 +8,7 @@ import { get } from 'hookrouter';
 describe('Teste do componente que exibe um item da listagem de tarefas', () => {
   const nomeTarefa = 'Tarefa';
   const tarefa = Tarefa(1, nomeTarefa, false);
+  const tarefaConcluida = Tarefa(2, nomeTarefa, true);
 
   it('deve renderizar o componente sem erros', () => {
     const div = document.createElement('div');
@@ -30,5 +31,20 @@ describe('Teste do componente que exibe um item da listagem de tarefas', () => {
       </table>
     );
     expect(getByTestId('tarefa')).toHaveTextContent(nomeTarefa);
+  });
+  it('deve exibir uma tarefa concluida', () => {
+    const { getByTestId } = render(
+      <table>
+        <tbody>
+          <ItensListaTarefas
+            tarefas={[tarefaConcluida]}
+            recarregarTarefas={() => false}
+          />
+        </tbody>
+      </table>
+    );
+    expect(getByTestId('nome-tarefa')).toHaveStyle(
+      'text-decoration: line-through'
+    );
   });
 });
