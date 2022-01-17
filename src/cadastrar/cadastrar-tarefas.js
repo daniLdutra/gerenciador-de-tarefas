@@ -9,12 +9,12 @@ import {
   Modal,
   ModalBody,
   ModalFooter,
-  ModalHeader,
 } from 'react-bootstrap';
 import React, { useState } from 'react';
 // import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Tarefa from '../models/tarefa.models';
+import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 
 function CadastrarTarefa() {
   const history = useHistory();
