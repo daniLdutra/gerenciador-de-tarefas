@@ -39,6 +39,7 @@ function ItensListaTarefas(props) {
 ItensListaTarefas.propTypes = {
   tarefas: PropTypes.array.isRequired,
   recarregarTarefas: PropTypes.func.isRequired,
+  className: PropTypes.string,
 };
 
 export default ItensListaTarefas;
