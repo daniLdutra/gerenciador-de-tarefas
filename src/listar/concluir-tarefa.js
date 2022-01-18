@@ -23,6 +23,21 @@ function ConcluirTarefa(props) {
     setExibirModal(false);
   }
 
+  function handleConcluirTarefa(event) {
+    event.preventDefault();
+    const tarefasDb = localStorage['tarefas'];
+    let tarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
+    tarefas = tarefas.map((tarefa) => {
+      if (tarefa.id === props.tarefa.id) {
+        tarefa.concluida = true;
+      }
+      return tarefa;
+    });
+    localStorage['tarefas'] = JSON.stringify(tarefas);
+    setExibirModal(false);
+    props.recarregarTarefas(true);
+  }
+
   return (
     <span className={props.className}>
       <Button

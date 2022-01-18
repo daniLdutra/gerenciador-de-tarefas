@@ -4,7 +4,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import '../index.css';
-
+import ConcluirTarefa from './concluir-tarefa';
 function ItensListaTarefas(props) {
   const history = useHistory();
 
@@ -18,6 +18,11 @@ function ItensListaTarefas(props) {
         {tarefa.nome}
       </td>
       <td className="text-right">
+        <ConcluirTarefa
+          tarefa={tarefa}
+          recarregarTarefas={props.recarregarTarefas}
+          className={tarefa.concluida ? 'hidden' : null}
+        />
         {!tarefa.concluida && (
           <Button
             onClick={() => history.push('/atualizar/' + tarefa.id)}
