@@ -14,7 +14,6 @@ import React, { useState } from 'react';
 // import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Tarefa from '../models/tarefa.models';
-import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 
 function CadastrarTarefa() {
   const history = useHistory();
@@ -73,10 +72,14 @@ function CadastrarTarefa() {
             <Button onClick={() => history.push('/')}>Voltar</Button>
           </FormGroup>
         </Form>
-        <Modal show={exibirModal} onHide={handleFecharModal}>
-          <ModalHeader closeButton>
+        <Modal
+          show={exibirModal}
+          onHide={handleFecharModal}
+          data-testid="modal"
+        >
+          <Modal.Header closeButton>
             <ModalTitle>Sucesso</ModalTitle>
-          </ModalHeader>
+          </Modal.Header>
           <ModalBody>Tarefa adicionada com sucesso</ModalBody>
           <ModalFooter>
             <Button variant="success" onClick={handleFecharModal}>

@@ -3,7 +3,6 @@ import { render, fireEvent } from '@testing-library/react';
 import ConcluirTarefa from './concluir-tarefa';
 import Tarefa from '../models/tarefa.models';
 import '@testing-library/jest-dom/extend-expect';
-import { get } from 'hookrouter';
 
 describe('Teste do componente de conclusão de tarefas', () => {
   const nomeTarefa = 'Tarefa de teste';

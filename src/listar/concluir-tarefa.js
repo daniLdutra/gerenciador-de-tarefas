@@ -9,7 +9,6 @@ import {
 } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
-import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 
 function ConcluirTarefa(props) {
   const [exibirModal, setExibirModal] = useState(false);
@@ -48,9 +47,9 @@ function ConcluirTarefa(props) {
         <FontAwesomeIcon icon={faClipboardCheck} />
       </Button>
       <Modal show={exibirModal} onHide={handleFecharModal} data-testid="modal">
-        <ModalHeader closeButton>
+        <Modal.Header closeButton>
           <ModalTitle>Concluir Tarefa</ModalTitle>
-        </ModalHeader>
+        </Modal.Header>
         <ModalBody>
           Deseja realmente concluir a seguinte tarefa?
           <br />
