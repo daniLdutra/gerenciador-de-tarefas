@@ -3,6 +3,7 @@ import { render, fireEvent } from '@testing-library/react';
 import ConcluirTarefa from './concluir-tarefa';
 import Tarefa from '../models/tarefa.models';
 import '@testing-library/jest-dom/extend-expect';
+import { get } from 'hookrouter';
 
 describe('Teste do componente de conclusão de tarefas', () => {
   const nomeTarefa = 'Tarefa de teste';
@@ -23,5 +24,16 @@ describe('Teste do componente de conclusão de tarefas', () => {
     );
     fireEvent.click(getByTestid('btn-abrir-modal'));
     expect(getByTestid('modal')).toHaveTextContent(nomeTarefa);
+  });
+
+  it('deve concluir a tarefa', () => {
+    localStorage['tarefas'] = JSON.stringify([tarefa]);
+    const { getByTestid } = render(
+      <ConcluirTarefa tarefa={tarefa} recarregarTarefa={() => false} />
+    );
+    fireEvent.click(getByTestid('btn-abrir-modal'));
+    fireEvent.click(getByTestid('btn-concluir'));
+    const tarefasDb = JSON.parse(localStorage['tarefas']);
+    expect(tarefasDb[0].concluida).toBeTruthy();
   });
 });
