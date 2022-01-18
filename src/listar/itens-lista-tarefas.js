@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import '../index.css';
 import ConcluirTarefa from './concluir-tarefa';
+import RemoverTarefa from './remover-tarefa';
 function ItensListaTarefas(props) {
   const history = useHistory();
 
@@ -23,6 +24,7 @@ function ItensListaTarefas(props) {
           recarregarTarefas={props.recarregarTarefas}
           className={tarefa.concluida ? 'hidden' : null}
         />
+        &nbsp;
         {!tarefa.concluida && (
           <Button
             onClick={() => history.push('/atualizar/' + tarefa.id)}
@@ -31,6 +33,11 @@ function ItensListaTarefas(props) {
             <FontAwesomeIcon icon={faEdit} />
           </Button>
         )}
+        &nbsp;
+        <RemoverTarefa
+          tarefa={tarefa}
+          recarregarTarefas={props.recarregarTarefas}
+        />
       </td>
     </tr>
   ));
