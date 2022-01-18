@@ -22,6 +22,16 @@ function RemoverTarefa(props) {
     setExibirModal(false);
   }
 
+  function handleRemoverTarefa(event) {
+    event.preventDefault();
+    tarefasDb = localStorage['tarefas'];
+    tarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
+    tarefas = tarefas.filter((tarefa) => tarefa.id !== props.tarefa.id);
+    localStorage['tarefas'] = JSON.stringify(tarefas);
+    setExibirModal(false);
+    props.recarregarTarefa(true);
+  }
+
   return (
     <span>
       <Button
