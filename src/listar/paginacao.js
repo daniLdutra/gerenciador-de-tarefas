@@ -12,9 +12,20 @@ function Paginacao(props) {
     );
   }
 
+  function gerarItemAnterior() {
+    return (
+      <Pagination.Prev
+        key="pagPrev"
+        onClick={() => props.mudarPagina(props.paginaAtual - 1)}
+        disabled={props.paginaAtual === 1}
+      />
+    );
+  }
+
   function obterPaginacao() {
     let itens = [];
     itens.push(gerarPrimeiroItem());
+    itens.push(gerarItemAnterior());
     return itens;
   }
 
