@@ -22,10 +22,39 @@ function Paginacao(props) {
     );
   }
 
+  function gerarItemNumerico(pagina) {
+    return (
+      <Pagination.Item
+        key={pagina}
+        active={pagina === props.paginaAtual}
+        onClick={() => props.mudarPagina(pagina)}
+      >
+        {pagina}
+      </Pagination.Item>
+    );
+  }
+
+  function gerarProximoItem(numPaginas) {
+    return (
+      <Pagination.Next
+        key="pagNext"
+        onClick={() => props.mudarPagina(props.paginaAtual + 1)}
+        disabled={props.paginaAtual === numPaginas}
+      />
+    );
+  }
+
   function obterPaginacao() {
+    const numPaginas = Math.ceil(props.totalItens / props.itensPorPagina);
+
     let itens = [];
     itens.push(gerarPrimeiroItem());
     itens.push(gerarItemAnterior());
+
+    for (let pagina = 1; pagina <= numPaginas; pagina += 1) {
+      itens.push(gerarItemNumerico(pagina));
+    }
+    itens.push(gerarProximoItem(numPaginas));
     return itens;
   }
 
