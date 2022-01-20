@@ -16,11 +16,26 @@ function ListarTarefas() {
   const [carregarTarefas, setCarregarTarefas] = useState(true);
   const [totalItens, setTotalItens] = useState(0);
   const [paginaAtual, setPaginaAtual] = useState(1);
+  const [ordenarAsc, setOrdenarAsc] = useState(false);
+  const [ordenarDesc, setOrdenarDesc] = useState(false);
 
   useEffect(() => {
     function obterTarefas() {
       const tarefasDb = localStorage['tarefas'];
       let listarTarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
+
+      //ordenar
+      if (ordenarAsc) {
+        listarTarefas.sort((t1, t2) =>
+          t1.nome.toLowerCase() > t2.nome.toLowerCase() ? 1 : -1
+        );
+      } else if (ordenarDesc) {
+        listarTarefas.sort((t1, t2) =>
+          t1.nome.toLowerCase() < t2.nome.toLowerCase() ? 1 : -1
+        );
+      }
+
+      //paginar
       setTotalItens(listarTarefas.length);
       setTarefas(
         listarTarefas.splice(
@@ -41,13 +56,32 @@ function ListarTarefas() {
     setCarregarTarefas(true);
   }
 
+  function handleOrdenar(event) {
+    event.preventDefault();
+    if (!ordenarAsc && !ordenarDesc) {
+      setOrdenarAsc(true);
+      setOrdenarDesc(false);
+    } else if (ordenarAsc) {
+      setOrdenarAsc(false);
+      setOrdenarDesc(true);
+    } else {
+      setOrdenarAsc(false);
+      setOrdenarDesc(false);
+    }
+    setCarregarTarefas(true);
+  }
+
   return (
     <div className="text-center">
       <h3>Tarefas a fazer</h3>
       <Table striped bordered hover responsive data-testid="tabela">
         <thead>
           <tr>
-            <th>Tarefa</th>
+            <th>
+              <a href="/" onClick={handleOrdenar}>
+                Tarefa
+              </a>
+            </th>
             <th>
               <Button
                 onClick={() => history.push('/cadastrar')}
