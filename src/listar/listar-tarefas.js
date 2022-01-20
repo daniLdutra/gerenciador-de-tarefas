@@ -49,7 +49,7 @@ function ListarTarefas() {
       obterTarefas();
       setCarregarTarefas(false);
     }
-  }, [carregarTarefas, paginaAtual]);
+  }, [carregarTarefas, paginaAtual, ordenarAsc, ordenarDesc]);
 
   function handleMudarPagina(pagina) {
     setPaginaAtual(pagina);
