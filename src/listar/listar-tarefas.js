@@ -6,6 +6,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 import ItensListaTarefas from './itens-lista-tarefas';
 import Paginacao from './paginacao';
+import Ordenacao from './ordenacao';
 
 function ListarTarefas() {
   const history = useHistory();
@@ -79,7 +80,8 @@ function ListarTarefas() {
           <tr>
             <th>
               <a href="/" onClick={handleOrdenar}>
-                Tarefa
+                Tarefa &nbsp;
+                <Ordenacao ordenarAsc={ordenarAsc} ordenarDesc={ordenarDesc} />
               </a>
             </th>
             <th>
