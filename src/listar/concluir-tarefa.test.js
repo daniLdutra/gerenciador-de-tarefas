@@ -11,27 +11,27 @@ describe('Teste do componente de conclusão de tarefas', () => {
   it('deve renderizar o componente sem erros', () => {
     const div = document.createElement('div');
     ReactDOM.render(
-      <ConcluirTarefa tarefa={tarefa} recarregarTarefa={() => false} />,
+      <ConcluirTarefa tarefa={tarefa} recarregarTarefas={() => false} />,
       div
     );
     ReactDOM.unmountComponentAtNode(div);
   });
 
   it('deve exibir abertura da modal', () => {
-    const { getByTestid } = render(
-      <ConcluirTarefa tarefa={tarefa} recarregarTarefa={() => false} />
+    const { getByTestId } = render(
+      <ConcluirTarefa tarefa={tarefa} recarregarTarefas={() => false} />
     );
-    fireEvent.click(getByTestid('btn-abrir-modal'));
-    expect(getByTestid('modal')).toHaveTextContent(nomeTarefa);
+    fireEvent.click(getByTestId('btn-abrir-modal'));
+    expect(getByTestId('modal')).toHaveTextContent(nomeTarefa);
   });
 
   it('deve concluir a tarefa', () => {
     localStorage['tarefas'] = JSON.stringify([tarefa]);
-    const { getByTestid } = render(
-      <ConcluirTarefa tarefa={tarefa} recarregarTarefa={() => false} />
+    const { getByTestId } = render(
+      <ConcluirTarefa tarefa={tarefa} recarregarTarefas={() => false} />
     );
-    fireEvent.click(getByTestid('btn-abrir-modal'));
-    fireEvent.click(getByTestid('btn-concluir'));
+    fireEvent.click(getByTestId('btn-abrir-modal'));
+    fireEvent.click(getByTestId('btn-concluir'));
     const tarefasDb = JSON.parse(localStorage['tarefas']);
     expect(tarefasDb[0].concluida).toBeTruthy();
   });

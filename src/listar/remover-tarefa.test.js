@@ -11,7 +11,7 @@ describe('Teste do componente de remocao de tarefas', () => {
   it('deve renderizar o componente sem erros', () => {
     const div = document.createElement('div');
     ReactDOM.render(
-      <RemoverTarefa tarefa={tarefa} recarregarTarefa={() => false} />,
+      <RemoverTarefa tarefa={tarefa} recarregarTarefas={() => false} />,
       div
     );
     ReactDOM.unmountComponentAtNode(div);
@@ -19,18 +19,18 @@ describe('Teste do componente de remocao de tarefas', () => {
 
   it('deve exibir a modal', () => {
     const { getByTestId } = render(
-      <RemoverTarefa tarefa={tarefa} recarregarTarefa={() => false} />
+      <RemoverTarefa tarefa={tarefa} recarregarTarefas={() => false} />
     );
     fireEvent.click(getByTestId('btn-abrir-modal'));
     expect(getByTestId('modal')).toHaveTextContent(nomeTarefa);
   });
 
-  it('deve removar uma tarefa', () => {
+  it('deve remover uma tarefa', () => {
     localStorage['tarefas'] = JSON.stringify([tarefa]);
     const { getByTestId } = render(
-      <RemoverTarefa tarefa={tarefa} recarregarTarefa={() => false} />
+      <RemoverTarefa tarefa={tarefa} recarregarTarefas={() => false} />
     );
-    fireEvent.click(getByTestId('btn-abrir-tarefa'));
+    fireEvent.click(getByTestId('btn-abrir-modal'));
     fireEvent.click(getByTestId('btn-remover'));
     const tarefasDb = JSON.parse(localStorage['tarefas']);
     expect(tarefasDb.length).toBe(0);

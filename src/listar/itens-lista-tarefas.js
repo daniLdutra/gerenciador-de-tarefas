@@ -10,7 +10,7 @@ function ItensListaTarefas(props) {
   const history = useHistory();
 
   return props.tarefas.map((tarefa) => (
-    <tr key={tarefa.id} data-testid="tarefa  ">
+    <tr key={tarefa.id} data-testid="tarefa">
       <td
         width="75%"
         data-testid="nome-tarefa"
