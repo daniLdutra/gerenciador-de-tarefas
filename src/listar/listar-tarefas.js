@@ -26,6 +26,11 @@ function ListarTarefas() {
       const tarefasDb = localStorage['tarefas'];
       let listarTarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
 
+      //fitrar
+      listarTarefas = listarTarefas.filter(
+        (t) => t.nome.toLowerCase().indexOf(filtroTarefa.toLowerCase()) === 0
+      );
+
       //ordenar
       if (ordenarAsc) {
         listarTarefas.sort((t1, t2) =>
