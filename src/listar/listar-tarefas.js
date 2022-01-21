@@ -1,4 +1,4 @@
-import { Button } from 'react-bootstrap';
+import { Button, FormControl } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,6 +19,7 @@ function ListarTarefas() {
   const [paginaAtual, setPaginaAtual] = useState(1);
   const [ordenarAsc, setOrdenarAsc] = useState(false);
   const [ordenarDesc, setOrdenarDesc] = useState(false);
+  const [filtroTarefa, setFiltroTarefa] = useState('');
 
   useEffect(() => {
     function obterTarefas() {
@@ -72,6 +73,10 @@ function ListarTarefas() {
     setCarregarTarefas(true);
   }
 
+  function handleFiltar({ target }) {
+    setFiltroTarefa(target.value);
+    setCarregarTarefas(true);
+  }
   return (
     <div className="text-center">
       <h3>Tarefas a fazer</h3>
@@ -94,6 +99,18 @@ function ListarTarefas() {
                 &nbsp; Nova Tarefa
               </Button>
             </th>
+          </tr>
+          <tr>
+            <th>
+              <FormControl
+                type="text"
+                value={filtroTarefa}
+                onChange={handleFiltar}
+                data-testid="txt-tarefa"
+                className="filtro-tarefa"
+              ></FormControl>
+            </th>
+            <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
