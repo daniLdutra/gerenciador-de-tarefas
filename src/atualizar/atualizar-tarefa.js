@@ -13,13 +13,15 @@ import {
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 
-function AtualizarTarefa() {
+function AtualizarTarefa(props) {
   const history = useHistory();
 
-  const [exibirModal, setExibirModal] = useState(true);
+  const [tarefa, setTarefa] = useState('');
+  const [exibirModal, setExibirModal] = useState(false);
+  const [formValidado, setFormValiado] = useState(false);
 
   function voltar(event) {
     event.preventDefault();
@@ -30,11 +32,25 @@ function AtualizarTarefa() {
     history.push('/');
   }
 
+  function atualizar(event) {
+    event.preventDefault();
+    setFormValiado(true);
+    if (event.currentTarget.checkValidity() === true) {
+      //obtem as tarefas
+
+      //persistir a tarefa atualizada
+      setExibirModal(true);
+    }
+  }
+  function handleTxtTarefa({ target }) {
+    setTarefa(target.value);
+  }
+
   return (
     <div>
       <h3 className="text-center">Atualizar</h3>
       <Container>
-        <Form noValidate>
+        <Form onSubmit={atualizar} noValidate validated={formValidado}>
           <FormGroup>
             <FormLabel>Tarefa</FormLabel>
             <FormControl
@@ -44,6 +60,8 @@ function AtualizarTarefa() {
               maxLength="100"
               required
               data-testid="txt-tarefa"
+              value={tarefa}
+              onChange={handleTxtTarefa}
             ></FormControl>
             <FormControl.Feedback type="invalid">
               A tarefa deve conter ao menos 5 caracteres.
@@ -58,7 +76,7 @@ function AtualizarTarefa() {
               Atualizar
             </Button>
             &nbsp;
-            <Link href="/" className="btn btn-light" onClick={voltar}>
+            <Link href="/" className="btn btn-secondary" onClick={voltar}>
               Voltar
             </Link>
           </FormGroup>

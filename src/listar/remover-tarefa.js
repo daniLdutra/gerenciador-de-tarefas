@@ -59,7 +59,7 @@ function RemoverTarefa(props) {
           >
             Sim
           </Button>
-          <Button variant="light" onClick={handleFecharModal}>
+          <Button className="btn btn-dark" onClick={handleFecharModal}>
             Não
           </Button>
         </ModalFooter>

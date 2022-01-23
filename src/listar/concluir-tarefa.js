@@ -57,14 +57,14 @@ function ConcluirTarefa(props) {
         </ModalBody>
         <ModalFooter>
           <Button
-            variant="primary"
+            className="btn btn-primary"
             onClick={handleConcluirTarefa}
             data-testid="btn-concluir"
           >
             Sim
           </Button>
           <Button
-            variant="light"
+            className="btn btn-dark"
             onClick={handleFecharModal}
             data-testid="btn-fechar-modal"
           >
