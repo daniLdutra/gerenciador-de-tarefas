@@ -22,6 +22,17 @@ function AtualizarTarefa(props) {
   const [tarefa, setTarefa] = useState('');
   const [exibirModal, setExibirModal] = useState(false);
   const [formValidado, setFormValiado] = useState(false);
+  const [carregarTarefa, setCarregarTarefa] = useState(true);
+
+  useEffect(() => {
+    const { id } = props.match.params;
+    const tarefasDb = localStorage['tarefas'];
+    const tarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
+    const tarefa = tarefas.filter((t) => t.id === parseInt(id))[0];
+
+    setTarefa(tarefa.nome);
+    setCarregarTarefa(false);
+  }, [carregarTarefa, props]);
 
   function voltar(event) {
     event.preventDefault();
@@ -76,7 +87,7 @@ function AtualizarTarefa(props) {
               Atualizar
             </Button>
             &nbsp;
-            <Link href="/" className="btn btn-secondary" onClick={voltar}>
+            <Link to="/" className="btn btn-secondary" onClick={voltar}>
               Voltar
             </Link>
           </FormGroup>
@@ -102,6 +113,6 @@ function AtualizarTarefa(props) {
 }
 
 AtualizarTarefa.propTypes = {
-  id: Proptypes.number.isRequired,
+  props: Proptypes.object,
 };
 export default AtualizarTarefa;
