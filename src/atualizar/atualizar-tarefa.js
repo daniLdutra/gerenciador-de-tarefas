@@ -45,11 +45,22 @@ function AtualizarTarefa(props) {
 
   function atualizar(event) {
     event.preventDefault();
-    setFormValiado(true);
-    if (event.currentTarget.checkValidity() === true) {
-      //obtem as tarefas
+    const { id } = props.match.params;
 
-      //persistir a tarefa atualizada
+    setFormValiado(true);
+    if (event.currentTarget.checkValidity()) {
+      //obtem as tarefas
+      const tarefasDb = localStorage['tarefas'];
+      let tarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
+
+      //alterar e atualizar tarefa
+      tarefas = tarefas.map((tarefasObj) => {
+        if (tarefasObj.id === parseInt(id)) {
+          tarefasObj.nome = tarefa;
+        }
+        return tarefasObj;
+      });
+      localStorage['tarefas'] = JSON.stringify(tarefas);
       setExibirModal(true);
     }
   }
