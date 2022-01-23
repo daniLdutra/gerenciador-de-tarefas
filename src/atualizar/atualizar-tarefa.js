@@ -1,20 +1,32 @@
 import Button from '@restart/ui/esm/Button';
-import Proptypes, { func } from 'prop-types';
+import Proptypes from 'prop-types';
 import {
   Container,
   Form,
   FormControl,
   FormGroup,
   FormLabel,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalTitle,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 
 function AtualizarTarefa() {
   const history = useHistory();
 
+  const [exibirModal, setExibirModal] = useState(true);
+
   function voltar(event) {
     event.preventDefault();
+    history.push('/');
+  }
+
+  function handleFecharModal() {
     history.push('/');
   }
 
@@ -51,6 +63,21 @@ function AtualizarTarefa() {
             </Link>
           </FormGroup>
         </Form>
+        <Modal
+          show={exibirModal}
+          onHide={handleFecharModal}
+          data-testid="modal"
+        >
+          <ModalHeader closeButton>
+            <ModalTitle>Sucesso</ModalTitle>
+          </ModalHeader>
+          <ModalBody>Tarefa atualizada com sucesso</ModalBody>
+          <ModalFooter>
+            <Button className="btn btn-success" onClick={handleFecharModal}>
+              Continuar
+            </Button>
+          </ModalFooter>
+        </Modal>
       </Container>
     </div>
   );
