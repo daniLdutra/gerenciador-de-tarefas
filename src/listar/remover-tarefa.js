@@ -68,7 +68,7 @@ function RemoverTarefa(props) {
   );
 }
 
-RemoverTarefa.prototype = {
+RemoverTarefa.propTypes = {
   tarefa: Proptypes.object.isRequired,
   recarregarTarefa: Proptypes.func.isRequired,
 };

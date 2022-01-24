@@ -1,4 +1,3 @@
-import Button from '@restart/ui/esm/Button';
 import Proptypes from 'prop-types';
 import {
   Container,
@@ -10,11 +9,11 @@ import {
   ModalBody,
   ModalFooter,
   ModalTitle,
+  Button,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 
 function AtualizarTarefa(props) {
   const history = useHistory();
@@ -108,9 +107,9 @@ function AtualizarTarefa(props) {
           onHide={handleFecharModal}
           data-testid="modal"
         >
-          <ModalHeader closeButton>
+          <Modal.Header closeButton>
             <ModalTitle>Sucesso</ModalTitle>
-          </ModalHeader>
+          </Modal.Header>
           <ModalBody>Tarefa atualizada com sucesso</ModalBody>
           <ModalFooter>
             <Button className="btn btn-success" onClick={handleFecharModal}>
